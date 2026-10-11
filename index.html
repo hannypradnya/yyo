@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPI Sad Darsana - Kelompok 3 Gold Edition</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-deep: #120A00;
+            --card-gold: #261601;
+            --box-gold: #382203;
+            --accent-gold: #F59E0B;
+            --text-gold: #FEF3C7;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at center, #2B1802 0%, #120A00 100%);
+            color: var(--text-gold);
+            min-height: 100vh;
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-12px) rotate(3deg) scale(1.03); }
+        }
+        .animate-float-slow { animation: float-slow 4s ease-in-out infinite; }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.4); }
+            50% { box-shadow: 0 0 35px rgba(251, 191, 36, 0.7); }
+        }
+        .animate-glow { animation: pulse-glow 3s infinite; }
+
+        .gold-card {
+            background: linear-gradient(145deg, rgba(38, 22, 1, 0.95), rgba(18, 10, 0, 0.95));
+            backdrop-filter: blur(16px);
+            border: 2px solid #D97706;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(252, 211, 77, 0.25);
+        }
+
+        .gold-box {
+            background: linear-gradient(135deg, #3D2605 0%, #241401 100%);
+            border: 1px solid #B45309;
+            color: #FEF3C7;
+        }
+
+        .gold-button {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: #120A00;
+            font-weight: 800;
+            border: 1px solid #FCD34D;
+            box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+            transition: all 0.25s ease-in-out;
+        }
+
+        .gold-button:hover {
+            background: linear-gradient(135deg, #FBBF24 0%, #B45309 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(251, 191, 36, 0.8);
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #120A00; }
+        ::-webkit-scrollbar-thumb { background: #D97706; border-radius: 5px; }
+    </style>
+</head>
+<body class="flex flex-col selection:bg-amber-500 selection:text-amber-950">
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-50 gold-card px-4 lg:px-8 py-3.5 flex items-center justify-between border-b border-amber-600/70">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('beranda')">
+            <div class="w-12 h-12 bg-gradient-to-tr from-amber-500 to-yellow-300 rounded-2xl flex items-center justify-center border-2 border-amber-300 shadow-xl animate-bounce">
+                <!-- Maskot Cahaya Emas HD 3D (Pengganti Nailong) -->
+                <svg viewBox="0 0 100 100" class="w-9 h-9 drop-shadow-md">
+                    <circle cx="50" cy="50" r="36" fill="url(#goldGrad)"/>
+                    <circle cx="50" cy="50" r="24" fill="#120A00" opacity="0.3"/>
+                    <polygon points="50,15 58,38 82,42 63,60 68,85 50,72 32,85 37,60 18,42 42,38" fill="#FEF3C7"/>
+                    <defs>
+                        <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FDE68A"/>
+                            <stop offset="100%" stop-color="#D97706"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div>
+                <h1 class="font-black text-lg text-amber-400 tracking-wider">DARSANA KELOMPOK 3</h1>
+                <p class="text-xs text-amber-200/80 font-semibold">Media Pembelajaran Interaktif Megah</p>
+            </div>
+        </div>
+
+        <!-- MENU NAVIGASI UTAMA -->
+        <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs lg:text-sm font-extrabold">
+            <button onclick="switchTab('beranda')" class="nav-btn px-3 py-2 rounded-xl transition text-amber-200 hover:bg-amber-900/60 hover:text-amber-300" data-target="beranda">Beranda</button>
+            <button onclick="switchTab('petunjuk')" class="nav-btn px-3 py-2 rounded-xl transition text-amber-200 hover:bg-amber-900/60 hover:text-amber-300" data-target="petunjuk">Petunjuk</button>
+            <button onclick="switchTab('tujuan')" class="nav-btn px-3 py-2 rounded-xl transition text-amber-200 hover:bg-amber-900/60 hover:text-amber-300" data-target="tujuan">Tujuan</button>
+            <button onclick="switchTab('peta')" class="nav-btn px-3 py-2 rounded-xl transition text-amber-200 hover:bg-amber-900/60 hover:text-amber-300" data-target="peta">Peta Konsep</button>
+            <button onclick="switchTab('materi')" class="nav-btn px-3 py-2 rounded-xl transition text-amber-200 hover:bg-amber-900/60 hover:text-amber-300" data-target="materi">Materi</button>
+            <button onclick="switchTab('game')" class="nav-btn px-3 py-2 rounded-xl transition text-amber-200 hover:bg-amber-900/60 hover:text-amber-300">Mini Game</button>
+            <button onclick="switchTab('kuis')" class="nav-btn px-3 py-2 rounded-xl transition text-amber-200 hover:bg-amber-900/60 hover:text-amber-300">Kuis</button>
+            <button onclick="switchTab('refleksi')" class="nav-btn px-3 py-2 rounded-xl transition text-amber-200 hover:bg-amber-900/60 hover:text-amber-300">Profil & Refleksi</button>
+        </nav>
+
+        <!-- AUDIO & MOBILE MENU TOGGLE -->
+        <div class="flex items-center space-x-2">
+            <button onclick="toggleAudio()" id="audio-toggle" class="p-2.5 bg-amber-800/80 hover:bg-amber-700 rounded-full text-amber-300 transition border border-amber-500" title="Musik Latar">
+                <i data-lucide="volume-2" class="w-5 h-5"></i>
+            </button>
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 bg-amber-800/80 rounded-full text-amber-300 border border-amber-500">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE DROPDOWN MENU -->
+    <div id="mobile-menu" class="hidden md:hidden gold-card border-b border-amber-600 px-6 py-4 space-y-2 font-bold text-amber-200">
+        <button onclick="switchTab('beranda'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-amber-900">Beranda</button>
+        <button onclick="switchTab('petunjuk'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-amber-900">Petunjuk Penggunaan</button>
+        <button onclick="switchTab('tujuan'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-amber-900">Tujuan Pembelajaran</button>
+        <button onclick="switchTab('peta'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-amber-900">Peta Konsep</button>
+        <button onclick="switchTab('materi'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-amber-900">Materi Sad Darsana</button>
+        <button onclick="switchTab('game'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-amber-900">Mini Game Interaktif</button>
+        <button onclick="switchTab('kuis'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-amber-900">Kuis Evaluasi</button>
+        <button onclick="switchTab('refleksi'); toggleMobileMenu();" class="block w-full text-left py-2 px-3 rounded-lg hover:bg-amber-900">Profil & Refleksi</button>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-8">
+
+        <!-- 1. BERANDA -->
+        <section id="tab-beranda" class="tab-content active space-y-8">
+            <div class="gold-card rounded-3xl p-8 lg:p-12 border-2 border-amber-500 relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8 animate-glow">
+                <div class="space-y-6 max-w-xl z-10 text-center lg:text-left">
+                    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-900/90 text-amber-300 font-black text-xs uppercase tracking-widest border border-amber-500 shadow-lg">
+                        <i data-lucide="crown" class="w-4 h-4"></i> Karya Unggulan Terbaik Seangkatan
+                    </span>
+                    <h2 class="text-3xl lg:text-5xl font-black text-amber-300 leading-tight">
+                        Eksplorasi Filsafat <span class="text-amber-500 underline decoration-amber-400">Sad Darsana</span>
+                    </h2>
+                    <p class="text-amber-100/90 font-medium text-base leading-relaxed">
+                        Media Pembelajaran Interaktif persembahan <strong class="text-amber-300">Kelompok 3</strong>. Menampilkan kajian filsafat Hindu lengkap, animasi dinamis, mini-game, dan kuis uji kemampuan berstandar tinggi!
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+                        <button onclick="playSound(); switchTab('peta');" class="gold-button px-8 py-3.5 rounded-2xl flex items-center gap-2">
+                            Mulai Eksplorasi <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </button>
+                        <button onclick="playSound(); switchTab('petunjuk');" class="px-6 py-3.5 bg-amber-900/60 hover:bg-amber-800 text-amber-300 font-extrabold rounded-2xl border border-amber-600 transition">
+                            Petunjuk Menu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Avatar Maskot HD 3D Bergerak (Pengganti Nailong) -->
+                <div class="z-10 flex flex-col items-center animate-float-slow">
+                    <div class="w-64 h-64 lg:w-72 lg:h-72 bg-gradient-to-br from-amber-600/40 to-yellow-600/20 rounded-full flex items-center justify-center p-6 border-4 border-amber-400 shadow-2xl relative">
+                        <!-- Maskot SVG HD 3D Berkilau -->
+                        <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-2xl">
+                            <circle cx="100" cy="100" r="70" fill="url(#goldOrb)" opacity="0.9"/>
+                            <circle cx="100" cy="100" r="50" fill="#120A00" opacity="0.4"/>
+                            <!-- Bintang Megah 3D -->
+                            <polygon points="100,30 115,75 160,85 122,115 135,160 100,135 65,160 78,115 40,85 85,75" fill="#FEF3C7" stroke="#F59E0B" stroke-width="3"/>
+                            <circle cx="100" cy="100" r="15" fill="#FBBF24"/>
+                            <defs>
+                                <radialGradient id="goldOrb" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#FCD34D"/>
+                                    <stop offset="100%" stop-color="#B45309"/>
+                                </radialGradient>
+                            </defs>
+                        </svg>
+                        <div class="absolute -bottom-2 bg-amber-950 text-amber-300 px-4 py-1.5 rounded-full text-xs font-black border border-amber-400 shadow-xl">
+                            ✨ Aura Darsana HD 3D ✨
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid Highlight Fitur Utama -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div onclick="switchTab('peta')" class="gold-card p-6 rounded-2xl cursor-pointer hover:border-amber-400 transition border-l-8 border-l-amber-500 group">
+                    <div class="w-12 h-12 bg-amber-900/80 rounded-xl flex items-center justify-center text-amber-300 mb-4 border border-amber-600 group-hover:scale-110 transition">
+                        <i data-lucide="map" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-extrabold text-lg mb-1 text-amber-300">Peta Konsep Sad Darsana</h3>
+                    <p class="text-sm text-amber-100/80 font-medium">Bagan hierarki terstruktur dari Astika, Nastika, hingga Sad Darsana.</p>
+                </div>
+                <div onclick="switchTab('game')" class="gold-card p-6 rounded-2xl cursor-pointer hover:border-amber-400 transition border-l-8 border-l-amber-500 group">
+                    <div class="w-12 h-12 bg-amber-900/80 rounded-xl flex items-center justify-center text-amber-300 mb-4 border border-amber-600 group-hover:scale-110 transition">
+                        <i data-lucide="gamepad-2" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-extrabold text-lg mb-1 text-amber-300">Mini Game Interaktif</h3>
+                    <p class="text-sm text-amber-100/80 font-medium">Tantangan seru mengelompokkan sistem aliran filsafat.</p>
+                </div>
+                <div onclick="switchTab('kuis')" class="gold-card p-6 rounded-2xl cursor-pointer hover:border-amber-400 transition border-l-8 border-l-amber-500 group">
+                    <div class="w-12 h-12 bg-amber-900/80 rounded-xl flex items-center justify-center text-amber-300 mb-4 border border-amber-600 group-hover:scale-110 transition">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-extrabold text-lg mb-1 text-amber-300">Kuis 12+ Soal & Skor</h3>
+                    <p class="text-sm text-amber-100/80 font-medium">Uji pemahaman komprehensif lengkap dengan pembahasan & rekap skor.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PETUNJUK -->
+        <section id="tab-petunjuk" class="tab-content hidden space-y-6">
+            <div class="gold-card rounded-3xl p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="p-3 bg-amber-900/80 rounded-2xl text-amber-300 border border-amber-600"><i data-lucide="compass" class="w-7 h-7"></i></div>
+                    <div>
+                        <h2 class="text-2xl font-black text-amber-300">Petunjuk Penggunaan MPI</h2>
+                        <p class="text-sm text-amber-100/80 font-medium">Panduan praktis bernavigasi tanpa hambatan</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="gold-box p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-amber-600 text-amber-950 rounded-xl flex items-center justify-center font-black flex-shrink-0">1</div>
+                        <div>
+                            <h4 class="font-extrabold text-amber-300 mb-1">Navigasi Tombol Atas</h4>
+                            <p class="text-sm text-amber-100/80">Semua menu di header dapat dipencet kapan saja untuk berpindah modul secara instan tanpa error 404.</p>
+                        </div>
+                    </div>
+                    <div class="gold-box p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-amber-600 text-amber-950 rounded-xl flex items-center justify-center font-black flex-shrink-0">2</div>
+                        <div>
+                            <h4 class="font-extrabold text-amber-300 mb-1">Eksplorasi Peta Konsep</h4>
+                            <p class="text-sm text-amber-100/80">Klik tombol cabang aliran filsafat untuk langsung membaca materi mendalam terkait.</p>
+                        </div>
+                    </div>
+                    <div class="gold-box p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-amber-600 text-amber-950 rounded-xl flex items-center justify-center font-black flex-shrink-0">3</div>
+                        <div>
+                            <h4 class="font-extrabold text-amber-300 mb-1">Mainkan Mini Game</h4>
+                            <p class="text-sm text-amber-100/80">Uji kecepatan dan ingatanmu dalam memilah kelompok Astika dan Nastika.</p>
+                        </div>
+                    </div>
+                    <div class="gold-box p-6 rounded-2xl flex items-start space-x-4">
+                        <div class="w-10 h-10 bg-amber-600 text-amber-950 rounded-xl flex items-center justify-center font-black flex-shrink-0">4</div>
+                        <div>
+                            <h4 class="font-extrabold text-amber-300 mb-1">Ujian Kuis & Skor</h4>
+                            <p class="text-sm text-amber-100/80">Selesaikan 12 soal pilihan ganda untuk memperoleh nilai akhir serta pembahasan lengkap.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TUJUAN PEMBELAJARAN -->
+        <section id="tab-tujuan" class="tab-content hidden space-y-6">
+            <div class="gold-card rounded-3xl p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="p-3 bg-amber-900/80 rounded-2xl text-amber-300 border border-amber-600"><i data-lucide="target" class="w-7 h-7"></i></div>
+                    <div>
+                        <h2 class="text-2xl font-black text-amber-300">Tujuan Pembelajaran</h2>
+                        <p class="text-sm text-amber-100/80 font-medium">Target capaian materi Darsana Hindu</p>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="gold-box p-5 rounded-2xl flex items-start space-x-4">
+                        <div class="p-2 bg-amber-800/80 rounded-lg text-amber-300"><i data-lucide="check-circle-2" class="w-5 h-5"></i></div>
+                        <p class="text-amber-100 font-bold text-sm">Menjelaskan pengertian, arti kata, dan hakikat Darsana dalam kerangka filsafat Agama Hindu.</p>
+                    </div>
+                    <div class="gold-box p-5 rounded-2xl flex items-start space-x-4">
+                        <div class="p-2 bg-amber-800/80 rounded-lg text-amber-300"><i data-lucide="check-circle-2" class="w-5 h-5"></i></div>
+                        <p class="text-amber-100 font-bold text-sm">Membedakan kelompok sistem filsafat Astika (mengakui Weda) dan Nastika (tidak mengakui Weda).</p>
+                    </div>
+                    <div class="gold-box p-5 rounded-2xl flex items-start space-x-4">
+                        <div class="p-2 bg-amber-800/80 rounded-lg text-amber-300"><i data-lucide="check-circle-2" class="w-5 h-5"></i></div>
+                        <p class="text-amber-100 font-bold text-sm">Menganalisis 6 pokok aliran Sad Darsana (Nyaya, Vaisesika, Samkhya, Yoga, Mimamsa, Vedanta).</p>
+                    </div>
+                    <div class="gold-box p-5 rounded-2xl flex items-start space-x-4">
+                        <div class="p-2 bg-amber-800/80 rounded-lg text-amber-300"><i data-lucide="check-circle-2" class="w-5 h-5"></i></div>
+                        <p class="text-amber-100 font-bold text-sm">Menerapkan nilai luhur pemikiran Darsana sebagai landasan berpikir kritis dalam kehidupan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PETA KONSEP -->
+        <section id="tab-peta" class="tab-content hidden space-y-6">
+            <div class="gold-card rounded-3xl p-8 text-center">
+                <div class="inline-flex p-3 bg-amber-900/80 rounded-2xl text-amber-300 border border-amber-600 mb-3"
